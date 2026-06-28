@@ -1241,6 +1241,54 @@
     /* ── Trust strip animate numbers ── */
     .trust-col { transition: transform 0.2s ease; }
     .trust-col:hover { transform: translateY(-2px); }
+
+    /* ─────────────────────────────────────────
+       APP ALIGNMENT — orange accent, tighter radii, gradient banner
+    ───────────────────────────────────────── */
+
+    /* Orange — the app's attention/action colour */
+    #progress-bar { background: linear-gradient(90deg, #FF7A45, #2563EB, #8B6CFF); }
+    .header-logo  { color: #FF7A45; }
+    .hero-badge   { color: #E8551A; background: rgba(255,122,69,0.09); border-color: rgba(255,122,69,0.22); }
+    .hero-h1 .line-accent { color: #FF7A45; }
+    .section-label         { color: #FF7A45; }
+    .cta-section h2 span   { color: #FF7A45; }
+    .mission-card h3       { color: #FF7A45; }
+
+    /* Number badges → circles, matching app badge language */
+    .hiw-num { background: #FF7A45; border-radius: 50%; }
+
+    /* Dark banner → same navy gradient as the in-app overlap card */
+    .dark-banner { background: linear-gradient(135deg, #061E42 0%, #0D3570 100%); }
+
+    /* Tighten card radii to match app's 14px card standard */
+    .hiw-card     { border-radius: 16px; }
+    .plan-card    { border-radius: 14px; }
+    .mission-card { border-radius: 14px; }
+
+    /* Plan card header row — icon left, badge pill right */
+    .plan-card-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .plan-icon { margin-bottom: 0; }
+
+    /* Post-type badge pills — matches in-app badge style */
+    .plan-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+      letter-spacing: 0.1px;
+      flex-shrink: 0;
+      align-self: center;
+    }
+    .plan-card.happening .plan-badge { background: rgba(44,183,168,0.16);  color: #1D9488; }
+    .plan-card.event     .plan-badge { background: rgba(37,99,235,0.12);   color: #2563EB; }
+    .plan-card.trip      .plan-badge { background: rgba(217,119,6,0.14);   color: #B86300; }
+    .plan-card.float     .plan-badge { background: rgba(139,108,255,0.14); color: #6D42E8; }
   </style>
 </head>
 <body>
@@ -1598,29 +1646,41 @@
   <p class="section-body">Add your trips, events, regular plans, and loose ideas. Caila matches them against what your friends are sharing and surfaces the moments where your worlds overlap.</p>
   <div class="plan-grid">
     <div class="plan-card happening">
-      <div class="plan-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/><path d="M18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"/><path d="M16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"/></svg>
+      <div class="plan-card-header">
+        <div class="plan-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z"/><path d="M18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"/><path d="M16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"/></svg>
+        </div>
+        <span class="plan-badge">Happening</span>
       </div>
       <h3>Happening</h3>
       <p>Something you do regularly — a weekly run, your usual Friday pub, a regular plan friends can join when they're around.</p>
     </div>
     <div class="plan-card event">
-      <div class="plan-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3a2 2 0 0 0-2 2v2a1 1 0 1 1 0 2v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a1 1 0 1 1 0-2V5a2 2 0 0 0-2-2H6z"/></svg>
+      <div class="plan-card-header">
+        <div class="plan-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3a2 2 0 0 0-2 2v2a1 1 0 1 1 0 2v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a1 1 0 1 1 0-2V5a2 2 0 0 0-2-2H6z"/></svg>
+        </div>
+        <span class="plan-badge">Event</span>
       </div>
       <h3>Event</h3>
       <p>A one-off occasion with a date, location, and an optional ticket link. Perfect for gigs, festivals, and things you've booked.</p>
     </div>
     <div class="plan-card trip">
-      <div class="plan-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+      <div class="plan-card-header">
+        <div class="plan-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+        </div>
+        <span class="plan-badge">Trip</span>
       </div>
       <h3>Trip</h3>
       <p>A period of travel with start and end dates. Friends see where you'll be and when, unlocking overlaps you didn't know existed.</p>
     </div>
     <div class="plan-card float">
-      <div class="plan-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+      <div class="plan-card-header">
+        <div class="plan-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        </div>
+        <span class="plan-badge">Float</span>
       </div>
       <h3>Float</h3>
       <p>A loose idea or intention — "thinking of doing this." No date needed. Float it, see who's interested, make it happen.</p>
