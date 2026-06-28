@@ -1041,11 +1041,14 @@
     .plan-card {
       border-radius: 20px;
       padding: 28px 24px 32px;
+      background: var(--surface);
+      border: 1.5px solid var(--border);
     }
-    .plan-card.happening { background: #E6F7F5; }
-    .plan-card.event     { background: #EAF0FD; }
-    .plan-card.trip      { background: #FEF3E2; }
-    .plan-card.float     { background: #EDE8FF; }
+    /* App brand colours: teal=#2CB7A8, blue=#2563EB, amber=#D97706, purple=#8B6CFF */
+    .plan-card.happening { background: rgba(44,183,168,0.08);  border-color: rgba(44,183,168,0.28);  }
+    .plan-card.event     { background: rgba(37,99,235,0.07);   border-color: rgba(37,99,235,0.22);   }
+    .plan-card.trip      { background: rgba(217,119,6,0.08);   border-color: rgba(217,119,6,0.25);   }
+    .plan-card.float     { background: rgba(139,108,255,0.08); border-color: rgba(139,108,255,0.25); }
     .plan-icon {
       width: 48px;
       height: 48px;
@@ -1056,17 +1059,20 @@
       font-size: 22px;
       margin-bottom: 20px;
     }
-    .plan-card.happening .plan-icon { background: #C2EDE9; }
-    .plan-card.event     .plan-icon { background: #C8D9FA; }
-    .plan-card.trip      .plan-icon { background: #FDE4B4; }
-    .plan-card.float     .plan-icon { background: #D9D0FF; }
+    .plan-card.happening .plan-icon { background: rgba(44,183,168,0.20); }
+    .plan-card.event     .plan-icon { background: rgba(37,99,235,0.14);  }
+    .plan-card.trip      .plan-icon { background: rgba(217,119,6,0.18);  }
+    .plan-card.float     .plan-icon { background: rgba(139,108,255,0.18);}
     .plan-card h3 {
       font-size: 16px;
       font-weight: 700;
-      color: var(--primary);
       margin-bottom: 8px;
       letter-spacing: -0.2px;
     }
+    .plan-card.happening h3 { color: #249E91; }
+    .plan-card.event     h3 { color: #2563EB; }
+    .plan-card.trip      h3 { color: #B86300; }
+    .plan-card.float     h3 { color: #7054E8; }
     .plan-card p {
       font-size: 14px;
       line-height: 1.7;
