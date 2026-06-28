@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>faelo — Plan. Connect. Remember.</title>
-  <meta name="description" content="faelo is a social planning app for events, trips, happenings, calendars and memories. Plan together. Keep track. Make it count." />
+  <title>Caila — See where your plans overlap</title>
+  <meta name="description" content="Caila shows you when your friends are heading somewhere at the same time as you — before it is too late to make something of it." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
@@ -12,17 +12,17 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --accent:       #F05A2A;
-      --accent-soft:  #FDF1EC;
-      --accent-glow:  rgba(240, 90, 42, 0.18);
-      --primary:      #10101F;
-      --secondary:    #6F6B80;
-      --bg:           #FAF9F7;
-      --surface:      #FFFFFF;
+      --accent:       #FF7A45;
+      --accent-soft:  #FFF0E8;
+      --accent-glow:  rgba(255, 122, 69, 0.20);
+      --primary:      #061E42;
+      --secondary:    #746D7C;
+      --bg:           #F5F1EC;
+      --surface:      #FFFCFA;
       --tint:         #F4EFFA;
-      --border:       #E8E2EC;
-      --shadow:       0 16px 40px rgba(16, 16, 31, 0.08);
-      --shadow-sm:    0 4px 16px rgba(16, 16, 31, 0.06);
+      --border:       #E5DDE8;
+      --shadow:       0 16px 40px rgba(6, 30, 66, 0.10);
+      --shadow-sm:    0 4px 16px rgba(6, 30, 66, 0.07);
     }
 
     html { scroll-behavior: smooth; }
@@ -42,10 +42,10 @@
       position: sticky;
       top: 0;
       z-index: 200;
-      background: rgba(250, 249, 247, 0.88);
+      background: rgba(245, 241, 236, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(232, 226, 236, 0.6);
+      border-bottom: 1px solid rgba(229, 221, 232, 0.6);
     }
 
     .header-inner {
@@ -139,7 +139,7 @@
       padding: 10px 18px;
       border-radius: 999px;
       margin-bottom: 16px;
-      border: 1px solid rgba(240, 90, 42, 0.15);
+      border: 1px solid rgba(255, 122, 69, 0.15);
     }
 
     .hero-badge svg { flex-shrink: 0; }
@@ -342,7 +342,7 @@
 
     .s-notif {
       width: 18px; height: 18px;
-      background: #F05A2A;
+      background: #061E42;
       border-radius: 50%;
       color: white;
       font-size: 9px;
@@ -360,7 +360,7 @@
 
     .s-overlap {
       margin: 0 10px 8px;
-      background: linear-gradient(135deg, #F05A2A 0%, #FF8C5E 100%);
+      background: linear-gradient(135deg, #061E42 0%, #0D3570 100%);
       border-radius: 14px;
       padding: 11px 13px;
       color: white;
@@ -398,7 +398,7 @@
 
     .s-join-pill {
       background: #fff;
-      color: #F05A2A;
+      color: #061E42;
       font-size: 9px;
       font-weight: 700;
       padding: 4px 9px;
@@ -428,18 +428,18 @@
       flex-shrink: 0;
     }
 
-    .s-card-name { font-size: 10px; font-weight: 700; color: #10101F; }
+    .s-card-name { font-size: 10px; font-weight: 700; color: #061E42; }
     .s-card-time { font-size: 8px; color: #6F6B80; }
 
     .s-badge {
       font-size: 8px; font-weight: 700;
       padding: 2px 7px; border-radius: 5px;
-      background: #FDF1EC; color: #F05A2A;
+      background: #FEF3C7; color: #D97706;
     }
     .s-badge.blue { background: #EDF5FF; color: #0071E3; }
 
     .s-card-body { padding: 0 11px 9px; }
-    .s-card-title { font-size: 11px; font-weight: 700; color: #10101F; margin-bottom: 1px; }
+    .s-card-title { font-size: 11px; font-weight: 700; color: #061E42; margin-bottom: 1px; }
     .s-card-loc { font-size: 9px; color: #6F6B80; margin-bottom: 5px; }
 
     .s-card-foot {
@@ -459,7 +459,7 @@
       margin-right: -5px;
     }
     .s-j-count { font-size: 8px; color: #6F6B80; margin-left: 9px; }
-    .s-join-btn { background: #F05A2A; color: #fff; font-size: 8px; font-weight: 700; padding: 3px 9px; border-radius: 7px; }
+    .s-join-btn { background: #061E42; color: #fff; font-size: 8px; font-weight: 700; padding: 3px 9px; border-radius: 7px; }
 
     /* ── Screen: Explore/Map (left) ── */
     .screen-explore { background: #F4EFFA; }
@@ -492,10 +492,10 @@
     .map-dot {
       position: absolute;
       width: 8px; height: 8px;
-      background: #F05A2A;
+      background: #FF7A45;
       border-radius: 50%;
       border: 2px solid #fff;
-      box-shadow: 0 2px 6px rgba(240,90,42,0.4);
+      box-shadow: 0 2px 6px rgba(255,122,69,0.4);
     }
 
     .map-dot.blue { background: #0071E3; box-shadow: 0 2px 6px rgba(0,113,227,0.4); }
@@ -528,9 +528,9 @@
     }
 
     .s-friend-chip img { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; }
-    .s-friend-chip span { font-size: 9px; font-weight: 600; color: #10101F; }
+    .s-friend-chip span { font-size: 9px; font-weight: 600; color: #061E42; }
 
-    .s-people-label { padding: 6px 12px 4px; font-size: 9px; font-weight: 700; color: #10101F; flex-shrink: 0; }
+    .s-people-label { padding: 6px 12px 4px; font-size: 9px; font-weight: 700; color: #061E42; flex-shrink: 0; }
 
     .s-people-row {
       display: flex;
@@ -547,7 +547,7 @@
     }
 
     .s-person img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #fff; }
-    .s-person span { font-size: 7px; font-weight: 600; color: #10101F; }
+    .s-person span { font-size: 7px; font-weight: 600; color: #061E42; }
 
     /* ── Screen: Calendar (right) ── */
     .screen-cal { background: #fff; }
@@ -566,7 +566,7 @@
       margin-bottom: 10px;
     }
 
-    .s-cal-month-label { font-size: 13px; font-weight: 700; color: #10101F; }
+    .s-cal-month-label { font-size: 13px; font-weight: 700; color: #061E42; }
     .s-cal-arrows { display: flex; gap: 10px; }
     .s-cal-arrow { font-size: 14px; color: #A09DB0; cursor: pointer; }
 
@@ -588,7 +588,7 @@
 
     .s-cal-date {
       font-size: 9px;
-      color: #10101F;
+      color: #061E42;
       padding: 3px 0;
       border-radius: 50%;
       width: 20px;
@@ -599,25 +599,25 @@
       margin: 0 auto;
     }
 
-    .s-cal-date.today { background: #F05A2A; color: #fff; font-weight: 700; }
-    .s-cal-date.has-event { color: #F05A2A; font-weight: 700; }
+    .s-cal-date.today { background: #061E42; color: #fff; font-weight: 700; }
+    .s-cal-date.has-event { color: #061E42; font-weight: 700; }
     .s-cal-date.muted { color: #C5BFD0; }
 
-    .s-upcoming-label { padding: 10px 12px 5px; font-size: 9px; font-weight: 700; color: #10101F; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
+    .s-upcoming-label { padding: 10px 12px 5px; font-size: 9px; font-weight: 700; color: #061E42; text-transform: uppercase; letter-spacing: 0.5px; flex-shrink: 0; }
 
     .s-event-row {
       margin: 0 10px 6px;
       background: #FAF9F7;
       border-radius: 10px;
       padding: 8px 10px;
-      border-left: 3px solid #F05A2A;
+      border-left: 3px solid #2563EB;
       flex-shrink: 0;
     }
 
     .s-event-row.blue { border-left-color: #0071E3; }
     .s-event-row.green { border-left-color: #30C559; }
 
-    .s-event-name { font-size: 10px; font-weight: 700; color: #10101F; margin-bottom: 1px; }
+    .s-event-name { font-size: 10px; font-weight: 700; color: #061E42; margin-bottom: 1px; }
     .s-event-meta { font-size: 8px; color: #6F6B80; margin-bottom: 4px; }
     .s-event-avs { display: flex; }
     .s-event-av { width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid #fff; object-fit: cover; margin-right: -3px; }
@@ -637,8 +637,8 @@
     .s-tab { display: flex; flex-direction: column; align-items: center; gap: 2px; }
     .s-tab-icon { font-size: 14px; }
     .s-tab-label { font-size: 7px; color: #A09DB0; font-weight: 500; }
-    .s-tab.active .s-tab-label { color: #F05A2A; }
-    .s-tab-plus { font-size: 20px; color: #F05A2A; line-height: 1; margin-bottom: 2px; }
+    .s-tab.active .s-tab-label { color: #061E42; }
+    .s-tab-plus { font-size: 20px; color: #061E42; line-height: 1; margin-bottom: 2px; }
 
     @media (max-width: 900px) {
       .hero-phones { height: 420px; }
@@ -750,9 +750,12 @@
 
     .trust-col {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      gap: 14px;
-      padding: 24px 32px;
+      justify-content: center;
+      text-align: center;
+      gap: 10px;
+      padding: 24px 20px;
     }
 
     .trust-col svg { color: #9490A8; flex-shrink: 0; }
@@ -762,6 +765,7 @@
       font-weight: 500;
       color: var(--secondary);
       line-height: 1.45;
+      white-space: nowrap;
     }
 
     @media (max-width: 720px) {
@@ -1026,7 +1030,7 @@
 <!-- ── Header ── -->
 <header class="site-header">
   <div class="header-inner">
-    <a class="header-logo" href="#">faelo</a>
+    <a class="header-logo" href="#">Caila</a>
     <nav>
       <ul class="header-nav">
         <li><a href="#how">How it works</a></li>
@@ -1057,11 +1061,11 @@
       </h1>
 
       <p class="hero-p">
-        faelo is a private network where your people share what they're doing next, from a local Sunday roast to a marathon across the world.
+        Caila is a private network where your people share what they're doing next, from a local Sunday roast to a marathon across the world.
       </p>
 
       <div class="hero-ctas">
-        <a href="#get-app" class="btn-appstore">
+        <a href="https://apps.apple.com/gb/app/id6744034075" class="btn-appstore">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
           <div class="btn-appstore-text">
             <span class="btn-appstore-sub">Download on the</span>
@@ -1135,7 +1139,7 @@
               </div>
             </div>
             <div class="s-tabbar">
-              <div class="s-tab active"><span class="s-tab-icon">🌍</span><span class="s-tab-label" style="color:#F05A2A;">World</span></div>
+              <div class="s-tab active"><span class="s-tab-icon">🌍</span><span class="s-tab-label" style="color:#061E42;">World</span></div>
               <div class="s-tab"><span class="s-tab-icon">🔍</span><span class="s-tab-label">Explore</span></div>
               <div class="s-tab"><span class="s-tab-plus">＋</span></div>
               <div class="s-tab"><span class="s-tab-icon">📅</span><span class="s-tab-label">Cal</span></div>
@@ -1151,7 +1155,7 @@
           <div class="iphone-screen screen-home">
             <div class="iphone-di"></div>
             <div class="s-appbar">
-              <span class="s-logo">faelo</span>
+              <span class="s-logo">Caila</span>
               <div class="s-notif">3</div>
             </div>
             <div class="s-section-label">Overlaps 🎯</div>
@@ -1214,7 +1218,7 @@
               </div>
             </div>
             <div class="s-tabbar">
-              <div class="s-tab active"><span class="s-tab-icon">🌍</span><span class="s-tab-label" style="color:#F05A2A;">World</span></div>
+              <div class="s-tab active"><span class="s-tab-icon">🌍</span><span class="s-tab-label" style="color:#061E42;">World</span></div>
               <div class="s-tab"><span class="s-tab-icon">🔍</span><span class="s-tab-label">Explore</span></div>
               <div class="s-tab"><span class="s-tab-plus">＋</span></div>
               <div class="s-tab"><span class="s-tab-icon">📅</span><span class="s-tab-label">Calendar</span></div>
@@ -1281,7 +1285,7 @@
               <div class="s-tab"><span class="s-tab-icon">🌍</span><span class="s-tab-label">World</span></div>
               <div class="s-tab"><span class="s-tab-icon">🔍</span><span class="s-tab-label">Explore</span></div>
               <div class="s-tab"><span class="s-tab-plus">＋</span></div>
-              <div class="s-tab active"><span class="s-tab-icon">📅</span><span class="s-tab-label" style="color:#F05A2A;">Calendar</span></div>
+              <div class="s-tab active"><span class="s-tab-icon">📅</span><span class="s-tab-label" style="color:#061E42;">Calendar</span></div>
               <div class="s-tab"><span class="s-tab-icon">👤</span><span class="s-tab-label">Me</span></div>
             </div>
           </div>
@@ -1314,7 +1318,7 @@
 
 </main>
 
-<!-- What is faelo -->
+<!-- What is Caila -->
 
 <!-- The idea -->
 <div style="width:100%;max-height:480px;overflow:hidden;position:relative;">
@@ -1322,16 +1326,16 @@
 </div>
 
 <section class="idea-section">
-  <div class="section-label">What is faelo</div>
+  <div class="section-label">What is Caila</div>
   <p class="idea-lead">
     Most social apps show you what your friends <em>did.</em><br/>
-    faelo shows you what they're <em>doing</em> — and finds where your plans already overlap.
+    Caila shows you what they're <em>doing</em> — and finds where your plans already overlap.
   </p>
   <p class="section-body" style="max-width: 720px; font-size: 17px; line-height: 1.8;">
-    You share where you're travelling, what events you're going to, what activities you're into. faelo quietly surfaces when a friend is heading to the same city, going to the same festival, or looking for someone to do the same thing. The coordination that used to require twelve WhatsApp messages and two weeks of back-and-forth happens automatically. Real moments with real people — with almost no effort.
+    You share where you're travelling, what events you're going to, what activities you're into. Caila quietly surfaces when a friend is heading to the same city, going to the same festival, or looking for someone to do the same thing. The coordination that used to require twelve WhatsApp messages and two weeks of back-and-forth happens automatically. Real moments with real people — with almost no effort.
   </p>
   <p class="section-body" style="max-width: 720px; font-size: 17px; line-height: 1.8; margin-top: 20px; font-weight: 600; color: var(--primary);">
-    faelo operates on a simple but powerful idea: if your friends knew what you were doing before you did it, you'd do more of it together.
+    Caila operates on a simple but powerful idea: if your friends knew what you were doing before you did it, you'd do more of it together.
   </p>
 </section>
 
@@ -1340,7 +1344,7 @@
   <div class="dark-banner-inner">
     <h2>The plans before, <span>not the photos after.</span></h2>
     <p>
-      Most social apps are about broadcasting your life after the fact. faelo is about coordinating it before — turning passive awareness of your friends' plans into real-world moments together.
+      Most social apps are about broadcasting your life after the fact. Caila is about coordinating it before — turning passive awareness of your friends' plans into real-world moments together.
     </p>
   </div>
 </div>
@@ -1358,7 +1362,7 @@
     <div class="hiw-card">
       <div class="hiw-num">2</div>
       <h3>Overlaps surface automatically</h3>
-      <p>faelo compares your plans with your friends' in real time. When dates and destinations align, you get notified. No searching, no asking around.</p>
+      <p>Caila compares your plans with your friends' in real time. When dates and destinations align, you get notified. No searching, no asking around.</p>
     </div>
     <div class="hiw-card">
       <div class="hiw-num">3</div>
@@ -1384,7 +1388,7 @@
       </div>
       <div class="mission-card full">
         <h3>Why it matters</h3>
-        <p>Loneliness among socially active, well-networked young adults is a real and growing phenomenon. It's not a lack of friends — it's a lack of activation. The infrastructure to turn existing relationships into lived experiences doesn't exist yet. faelo builds it.</p>
+        <p>Loneliness among socially active, well-networked young adults is a real and growing phenomenon. It's not a lack of friends — it's a lack of activation. The infrastructure to turn existing relationships into lived experiences doesn't exist yet. Caila builds it.</p>
       </div>
     </div>
   </div>
@@ -1393,21 +1397,21 @@
 <!-- CTA -->
 <div style="background: var(--bg);">
   <section class="cta-section" id="get-app">
-    <div class="section-label">Early access · iOS</div>
+    <div class="section-label">Available on iOS</div>
     <h2>Stop missing<br /><span>each other.</span></h2>
     <p>You're going to the same festival.<br />You just don't know it yet.</p>
-    <a href="#" class="cta-big">
+    <a href="https://apps.apple.com/gb/app/id6744034075" class="cta-big">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-      Join on TestFlight
+      Download on the App Store
     </a>
-    <p style="margin-top: 16px; font-size: 13px; color: var(--secondary);">Free during beta · iOS only</p>
+    <p style="margin-top: 16px; font-size: 13px; color: var(--secondary);">Free · iOS only</p>
   </section>
 </div>
 
 <!-- Footer -->
 <footer>
-  <span class="footer-logo">faelo</span>
-  <p>© 2026 faelo · iOS · Early access</p>
+  <span class="footer-logo">Caila</span>
+  <p>© 2026 Caila · iOS</p>
 </footer>
 
 </body>
