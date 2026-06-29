@@ -5,8 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Caila — Plans still ahead of you</title>
   <meta name="description" content="Caila helps real friends share upcoming trips, events, and plans — so they can discover when their lives overlap before the moment passes." />
+  <link rel="canonical" href="https://caila.social/" />
+  <meta name="robots" content="index, follow" />
   <meta property="og:title" content="Caila — Plans still ahead of you" />
   <meta property="og:description" content="A private social app for the plans still ahead of you." />
+  <meta property="og:url" content="https://caila.social/" />
+  <meta property="og:type" content="website" />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Caila",
+      "url": "https://caila.social/",
+      "description": "Caila helps real friends share upcoming trips, events, and plans.",
+      "sameAs": [
+        "https://caila.social/"
+      ]
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet" />
@@ -118,7 +134,7 @@
     .hero {
       min-height: 100vh;
       padding: 120px 0 80px;
-      background: var(--bg);
+      background: #FBF5F1;
       display: flex; align-items: center;
       position: relative; overflow: hidden;
     }
@@ -149,9 +165,8 @@
     .hero-char img {
       width: 100%; max-width: 420px;
       pointer-events: none; user-select: none;
-      mix-blend-mode: multiply;
-      -webkit-mask-image: radial-gradient(ellipse 72% 78% at 50% 58%, black 35%, rgba(0,0,0,0.5) 58%, transparent 82%);
-      mask-image: radial-gradient(ellipse 72% 78% at 50% 58%, black 35%, rgba(0,0,0,0.5) 58%, transparent 82%);
+      -webkit-mask-image: linear-gradient(to bottom, black 62%, rgba(0,0,0,0.6) 80%, transparent 97%);
+      mask-image: linear-gradient(to bottom, black 62%, rgba(0,0,0,0.6) 80%, transparent 97%);
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 8px;
@@ -252,6 +267,65 @@
       text-align: center; padding: 9px 18px;
       border-radius: 12px; white-space: nowrap;
       box-shadow: 0 8px 24px rgba(6,30,66,0.30);
+      transition: background 0.25s ease, box-shadow 0.25s ease;
+    }
+    .h-overlap-badge.is-muted {
+      background: rgba(6,30,66,0.35); box-shadow: none;
+    }
+    @keyframes overlapPop {
+      0% { transform: scale(0.85); }
+      60% { transform: scale(1.07); }
+      100% { transform: scale(1); }
+    }
+    .h-overlap-badge.pop { animation: overlapPop 0.35s ease; }
+
+    .h-av--you {
+      width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+      background: var(--orange); color: #fff;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Interactive overlap demo timeline */
+    .demo-timeline { width: 100%; }
+    .demo-hint {
+      display: flex; align-items: center; gap: 6px; justify-content: center;
+      font-size: 11px; font-weight: 700; color: var(--muted);
+      margin-bottom: 10px; letter-spacing: 0.02em;
+      transition: opacity 0.4s ease;
+    }
+    .demo-hint.hidden { opacity: 0; }
+    .demo-track {
+      position: relative; height: 60px;
+      background: rgba(6,30,66,0.045);
+      border: 1px solid var(--border-w); border-radius: 14px;
+    }
+    .demo-range {
+      position: absolute; height: 22px; border-radius: 8px;
+      display: flex; align-items: center; gap: 4px; padding: 0 8px;
+      font-size: 10px; font-weight: 800; color: #fff;
+      white-space: nowrap; overflow: hidden;
+      transition: left 0.3s cubic-bezier(.2,.8,.2,1), width 0.3s cubic-bezier(.2,.8,.2,1);
+    }
+    .demo-range--friend { top: 8px; background: rgba(6,30,66,0.55); }
+    .demo-range--you {
+      top: 32px; background: var(--orange); cursor: grab;
+      box-shadow: 0 6px 16px rgba(255,122,69,0.40);
+      touch-action: none;
+    }
+    .demo-range--you:active { cursor: grabbing; }
+    .demo-range--you:focus-visible { outline: 2px solid var(--dark); outline-offset: 2px; }
+    .demo-range--you.dragging { transition: none; }
+    .demo-grip { opacity: 0.85; flex-shrink: 0; display: flex; }
+    .demo-range-overlap {
+      position: absolute; top: 4px; height: 34px; border-radius: 10px;
+      background: rgba(255,122,69,0.16); border: 1.5px dashed rgba(255,122,69,0.55);
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease, left 0.3s ease, width 0.3s ease;
+    }
+    .demo-range-overlap.show { opacity: 1; }
+    .demo-track-labels {
+      display: flex; justify-content: space-between;
+      margin-top: 6px; font-size: 10px; color: var(--muted); padding: 0 2px;
     }
 
     /* ════════════════════════════════════
@@ -310,6 +384,15 @@
     }
 
     .overlap-section { padding: 120px 0; background: var(--bg); }
+
+    /* Story section */
+    .story-section { padding: 120px 0; background: var(--dark); }
+    .story-section .inner { max-width: 720px; }
+    .story-section .section-label { color: var(--orange); }
+    .story-h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; color: #fff; line-height: 1.15; margin: 12px 0 48px; }
+    .story-body p { font-size: 1.1rem; line-height: 1.75; color: rgba(255,255,255,0.72); margin-bottom: 24px; }
+    .story-body p:last-child { margin-bottom: 0; }
+    .story-punchline { font-size: 1.2rem !important; font-weight: 700; color: #fff !important; }
     .overlap-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: center;
@@ -411,7 +494,60 @@
     }
 
     /* ════════════════════════════════════
-       5. PRIVACY
+       5. SCREENSHOTS
+    ════════════════════════════════════ */
+    .screenshots-section {
+      padding: 100px 0 0;
+      background: var(--bg);
+      overflow: hidden;
+    }
+    .screenshots-head {
+      max-width: 500px; margin: 0 auto 52px; text-align: center;
+      padding: 0 32px;
+    }
+    .screenshots-h2 {
+      font-size: clamp(24px, 3vw, 40px);
+      font-weight: 800; letter-spacing: -1.5px; line-height: 1.12;
+      color: var(--dark);
+    }
+    .screenshots-track-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .screenshots-track-wrap::-webkit-scrollbar { display: none; }
+    .screenshots-track {
+      display: flex; gap: 20px;
+      padding: 0 64px 72px;
+      min-width: max-content;
+    }
+    .screenshot-item {
+      flex-shrink: 0;
+      width: 260px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 12px 48px rgba(6,30,66,0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .screenshot-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 60px rgba(6,30,66,0.16);
+    }
+    .screenshot-item img {
+      width: 100%; display: block;
+    }
+    @media (max-width: 860px) {
+      .screenshots-track { padding: 0 32px 56px; gap: 16px; }
+      .screenshot-item { width: 220px; }
+    }
+    @media (max-width: 580px) {
+      .screenshots-section { padding: 80px 0 0; }
+      .screenshots-track { padding: 0 24px 48px; gap: 14px; }
+      .screenshot-item { width: 190px; border-radius: 18px; }
+    }
+
+    /* ════════════════════════════════════
+       6. PRIVACY
     ════════════════════════════════════ */
     .privacy-section {
       padding: 120px 0;
@@ -566,9 +702,23 @@
       color: rgba(255,255,255,0.28);
     }
 
+    /* ── Why It Matters ── */
+    .why-section { padding: 120px 0; background: var(--bg); }
+    .why-section .inner { max-width: 780px; }
+    .why-h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; color: var(--dark); line-height: 1.2; margin: 12px 0 48px; }
+    .why-intro { font-size: 1.05rem; line-height: 1.75; color: var(--muted); margin-bottom: 48px; }
+    .why-stats { display: flex; flex-direction: column; gap: 0; margin-bottom: 48px; border-top: 1px solid var(--border-w); }
+    .why-stat { display: flex; gap: 24px; align-items: flex-start; padding: 28px 0; border-bottom: 1px solid var(--border-w); }
+    .why-stat-bar { flex-shrink: 0; width: 3px; border-radius: 2px; background: var(--orange); align-self: stretch; min-height: 20px; }
+    .why-stat-text { font-size: 1rem; line-height: 1.65; color: var(--muted); }
+    .why-stat-text strong { color: var(--dark); font-weight: 700; }
+    .why-closing { display: flex; flex-direction: column; gap: 20px; }
+    .why-closing p { font-size: 1.05rem; line-height: 1.75; color: var(--muted); }
+    .why-closing p:last-child { color: var(--dark); font-weight: 600; font-size: 1.1rem; }
+
     /* ── Mascot CTA ── */
     .mascot-cta {
-      background: #F5F0EB;
+      background: #FBF5F1;
       padding: 80px 0 0;
       overflow: hidden;
     }
@@ -584,8 +734,8 @@
       width: 100%; max-width: 380px;
       transform: scaleX(-1);
       display: block;
-      -webkit-mask-image: radial-gradient(ellipse 78% 82% at 52% 56%, black 42%, rgba(0,0,0,0.6) 62%, transparent 88%);
-      mask-image: radial-gradient(ellipse 78% 82% at 52% 56%, black 42%, rgba(0,0,0,0.6) 62%, transparent 88%);
+      -webkit-mask-image: linear-gradient(to bottom, black 62%, rgba(0,0,0,0.6) 80%, transparent 97%);
+      mask-image: linear-gradient(to bottom, black 62%, rgba(0,0,0,0.6) 80%, transparent 97%);
     }
     .mascot-cta-text {
       padding-bottom: 80px;
@@ -649,7 +799,84 @@
     }
     .footer-nav a:hover { color: rgba(255,255,255,0.72); }
 
+    /* ── Section dot nav ── */
+    .section-dot-nav {
+      position: fixed;
+      right: 24px;
+      top: 50%;
+      z-index: 210;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      transform: translateY(-50%) translateX(18px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.24s ease, transform 0.24s ease;
+    }
+    .section-dot-nav.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(-50%);
+    }
+    .section-dot {
+      position: relative;
+      width: 15px;
+      height: 15px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+    .section-dot::before {
+      content: '';
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: rgba(6,30,66,0.26);
+      box-shadow: 0 0 0 1px rgba(255,252,248,0.72);
+      transition: background 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+    }
+    .section-dot:hover::before,
+    .section-dot:focus-visible::before {
+      background: var(--purple);
+      transform: scale(1.18);
+    }
+    .section-dot.active::before {
+      background: var(--dark);
+      box-shadow: 0 0 0 5px rgba(139,108,255,0.16), 0 0 0 1px rgba(255,252,248,0.9);
+      transform: scale(1.1);
+    }
+    .section-dot-label {
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%) translateX(6px);
+      padding: 6px 9px;
+      border: 1px solid rgba(216,208,240,0.88);
+      border-radius: 999px;
+      background: rgba(255,252,248,0.94);
+      color: var(--dark);
+      box-shadow: 0 10px 28px rgba(6,30,66,0.10);
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+    .section-dot:hover .section-dot-label,
+    .section-dot:focus-visible .section-dot-label {
+      opacity: 1;
+      transform: translateY(-50%);
+    }
+
     /* ── Responsive ── */
+    @media (max-width: 1180px) {
+      .section-dot-nav { display: none; }
+    }
     @media (max-width: 1024px) {
       .preview-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -687,13 +914,27 @@
 
 <div id="progress-bar"></div>
 
+<nav class="section-dot-nav" id="section-dot-nav" aria-label="Page sections">
+  <a class="section-dot active" href="#hero" aria-label="Hero"><span class="section-dot-label">Hero</span></a>
+  <a class="section-dot" href="#problem" aria-label="What it does"><span class="section-dot-label">What it does</span></a>
+  <a class="section-dot" href="#screenshots" aria-label="The app"><span class="section-dot-label">The app</span></a>
+  <a class="section-dot" href="#overlap" aria-label="The overlap"><span class="section-dot-label">The overlap</span></a>
+  <a class="section-dot" href="#story" aria-label="Story"><span class="section-dot-label">Story</span></a>
+  <a class="section-dot" href="#how-it-works" aria-label="How it works"><span class="section-dot-label">How it works</span></a>
+  <a class="section-dot" href="#privacy" aria-label="Privacy"><span class="section-dot-label">Privacy</span></a>
+  <a class="section-dot" href="#preview" aria-label="Plan types"><span class="section-dot-label">Plan types</span></a>
+  <a class="section-dot" href="#why" aria-label="Why it matters"><span class="section-dot-label">Why it matters</span></a>
+  <a class="section-dot" href="#join" aria-label="Join Caila"><span class="section-dot-label">Join Caila</span></a>
+</nav>
+
 <!-- ── Header ── -->
 <header class="site-header" id="site-header">
   <a class="header-logo" href="#">Caila</a>
   <nav>
     <ul class="header-nav">
+      <li><a href="#problem">Features</a></li>
       <li><a href="#how-it-works">How it works</a></li>
-      <li><a href="#vision">Why Caila</a></li>
+      <li><a href="#privacy">Privacy</a></li>
     </ul>
   </nav>
   <a href="https://apps.apple.com/gb/app/id6744034075" class="header-cta">iOS App ↗</a>
@@ -707,14 +948,13 @@
 
     <div class="hero-left">
       <h1 class="hero-h1 reveal">
-        Connecting people to moments<br />before they happen, not after.
+        Connecting people to moments<br /><em>before</em> they happen, not after.
       </h1>
       <p class="hero-sub reveal">
         Share your upcoming trips, events, and plans with the people already in your life.
       </p>
       <div class="hero-actions reveal">
         <a href="https://apps.apple.com/gb/app/id6744034075" class="btn-orange-pulse">Follow the journey</a>
-        <a href="#how-it-works" class="btn-ghost">See how it works</a>
       </div>
       <div class="hero-trust reveal">
         <div class="trust-chip"><div class="trust-pip"></div> Free to use</div>
@@ -740,35 +980,26 @@
       <div>
         <span class="section-label reveal">What it does</span>
         <h2 class="problem-h2 reveal">See what your friends have coming up.</h2>
-        <p class="problem-body reveal">The trips they're planning, the events they've booked, and the moments where your worlds cross — before they pass.</p>
+        <p class="problem-body reveal">Caila does two things: surfaces and inspires overlaps.</p>
       </div>
 
       <div class="problem-cards">
         <div class="p-card reveal">
           <div class="p-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           </div>
           <div>
-            <div class="p-card-title">Same city</div>
-            <div class="p-card-body">You're both in Rome next weekend.</div>
+            <div class="p-card-title">Surfaces overlaps that already exist.</div>
+            <div class="p-card-body">You post that you're going to Dublin in October. A friend you haven't seen in six months is flying in the same weekend. Caila tells you before you both go home without seeing each other.</div>
           </div>
         </div>
         <div class="p-card reveal">
           <div class="p-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 3a2 2 0 0 0-2 2v2a1 1 0 1 1 0 2v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9a1 1 0 1 1 0-2V5a2 2 0 0 0-2-2H6z"/></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
           </div>
           <div>
-            <div class="p-card-title">Same event</div>
-            <div class="p-card-body">You're going to the same festival.</div>
-          </div>
-        </div>
-        <div class="p-card reveal">
-          <div class="p-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          </div>
-          <div>
-            <div class="p-card-title">Nearby plan</div>
-            <div class="p-card-body">A friend is heading for a run nearby.</div>
+            <div class="p-card-title">Inspires overlaps that wouldn't have happened.</div>
+            <div class="p-card-body">You see a friend is running the London Marathon. You weren't planning to go. Now you are. Plans change. Moments happen that otherwise never would.</div>
           </div>
         </div>
       </div>
@@ -778,10 +1009,25 @@
 </section>
 
 <!-- ════════════════════════════════════
-     2b. BANNER
+     2b. SCREENSHOTS
 ════════════════════════════════════ -->
-<section class="banner-section">
-  <img src="real-plans.png" alt="Real plans. Real friends. Real life." />
+<section class="screenshots-section" id="screenshots">
+  <div class="screenshots-head">
+    <span class="section-label reveal">The app</span>
+    <h2 class="screenshots-h2 reveal">Everything in one place.</h2>
+  </div>
+  <div class="screenshots-track-wrap">
+    <div class="screenshots-track">
+      <div class="screenshot-item reveal"><img src="screenshot-1.png" alt="Connect before, not after" /></div>
+      <div class="screenshot-item reveal"><img src="screenshot-2.jpg" alt="See what's next together" /></div>
+      <div class="screenshot-item reveal"><img src="screenshot-3.png" alt="Know what friends are doing next" /></div>
+      <div class="screenshot-item reveal"><img src="screenshot-4.png" alt="Share trips, events and plans in seconds" /></div>
+      <div class="screenshot-item reveal"><img src="screenshot-5.png" alt="Discover what's happening around you" /></div>
+      <div class="screenshot-item reveal"><img src="screenshot-6.png" alt="Find the days your plans overlap" /></div>
+      <div class="screenshot-item reveal"><img src="screenshot-6b.png" alt="Keep your social plans in one place" /></div>
+      <div class="screenshot-item reveal"><img src="screenshot-7.png" alt="Keep your real-life plans in one place" /></div>
+    </div>
+  </div>
 </section>
 
 <!-- ════════════════════════════════════
@@ -796,16 +1042,18 @@
           <div class="h-cards-row">
             <div class="h-plan-card">
               <div class="h-card-top">
-                <img class="h-av" src="https://randomuser.me/api/portraits/men/85.jpg" alt="Daniel" />
+                <div class="h-av h-av--you">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+                </div>
                 <div>
-                  <div class="h-av-name">Daniel</div>
-                  <div class="h-av-city">Dublin, Ireland</div>
+                  <div class="h-av-name">You</div>
+                  <div class="h-av-city">Your trip</div>
                 </div>
               </div>
               <span class="h-type-badge">Trip</span>
               <div class="h-row">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                12–15 July
+                <span id="youDateLabel">12–15 July</span>
               </div>
               <div class="h-row">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -831,8 +1079,31 @@
               </div>
             </div>
           </div>
+
+          <div class="demo-timeline reveal">
+            <div class="demo-hint" id="demoHint">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 9l-4 4 4 4"/><path d="M16 9l4 4-4 4"/><line x1="4" y1="13" x2="20" y2="13"/></svg>
+              Drag your trip
+            </div>
+            <div class="demo-track" id="demoTrack">
+              <div class="demo-range demo-range--friend" id="friendRange">
+                <span class="demo-range-label">Sarah</span>
+              </div>
+              <div class="demo-range-overlap" id="overlapHighlight"></div>
+              <div class="demo-range demo-range--you" id="youRange" tabindex="0" role="slider" aria-label="Your trip dates" aria-valuemin="5" aria-valuemax="22" aria-valuenow="12">
+                <span class="demo-grip">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>
+                </span>
+                <span class="demo-range-label">You</span>
+              </div>
+            </div>
+            <div class="demo-track-labels">
+              <span>5 Jul</span><span>15 Jul</span><span>25 Jul</span>
+            </div>
+          </div>
+
           <div class="h-connector">
-            <div class="h-overlap-badge">Overlap · Rome · 14–15 July</div>
+            <div class="h-overlap-badge" id="overlapBadge">Overlap · Rome · 14–15 July</div>
           </div>
         </div>
       </div>
@@ -849,13 +1120,36 @@
 </section>
 
 <!-- ════════════════════════════════════
+     3b. FOUNDER STORY
+════════════════════════════════════ -->
+<section class="story-section" id="story">
+  <div class="inner">
+    <span class="section-label reveal">A personal story</span>
+    <h2 class="story-h2 reveal">A story of luck.</h2>
+    <div class="story-body">
+      <p class="reveal">I'm Italian. I live in Brussels. Last year I was in Berlin — a close friend happened to be flying in the same day. We only found out because of a Strava notification. We spent the whole day together.</p>
+      <p class="reveal">A month later, a friend ran the London Marathon while I was there. She didn't know I was. We found out that evening on Instagram.</p>
+      <p class="reveal">Same story. Different feeling. One was a great day. One was a missed one.</p>
+      <p class="story-punchline reveal">The only difference was luck. Caila removes the luck.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
+     3c. BANNER
+════════════════════════════════════ -->
+<section class="banner-section">
+  <img src="real-plans.png" alt="Real plans. Real friends. Real life." />
+</section>
+
+<!-- ════════════════════════════════════
      4. HOW IT WORKS
 ════════════════════════════════════ -->
 <section class="hiw-section" id="how-it-works">
   <div class="inner">
     <div class="hiw-head">
       <span class="section-label reveal">How it works</span>
-      <h2 class="hiw-h2 reveal">Share what's ahead.<br/>See what overlaps.<br/>Make more of it.</h2>
+      <h2 class="hiw-h2 reveal">Share what's ahead.<br/>See what overlaps.</h2>
     </div>
     <div class="hiw-grid">
       <div class="hiw-card reveal">
@@ -878,7 +1172,7 @@
 </section>
 
 <!-- ════════════════════════════════════
-     5. PRIVACY
+     6. PRIVACY
 ════════════════════════════════════ -->
 <section class="privacy-section" id="privacy">
   <div class="inner">
@@ -887,7 +1181,6 @@
     <p class="privacy-sub reveal">You control what you add, who can see it, and how visible each plan should be.</p>
     <p class="privacy-tagline reveal">No algorithm. No strangers. No noise.</p>
     <div class="privacy-pills">
-      <div class="privacy-pill reveal"><div class="privacy-pip"></div> No public follower count</div>
       <div class="privacy-pill reveal"><div class="privacy-pip"></div> No strangers</div>
       <div class="privacy-pill reveal"><div class="privacy-pip"></div> No algorithmic noise</div>
       <div class="privacy-pill reveal"><div class="privacy-pip"></div> Plans shared with people you choose</div>
@@ -907,69 +1200,69 @@
     </div>
     <div class="preview-grid">
 
-      <div class="prev-card reveal">
+      <div class="prev-card reveal" style="border-top: 3px solid #2563EB;">
         <div class="prev-card-body">
-          <div class="prev-title">Trips</div>
-          <div class="prev-desc">Share where you'll be and when. Friends see if their world overlaps with yours.</div>
-        </div>
-        <div class="prev-card-foot">
-          <div class="prev-mini">
-            <div class="prev-dot" style="background:#C0451A;"></div>
-            New York · Sep 10–14
-          </div>
-          <div class="prev-mini">
-            <div class="prev-dot" style="background:#C0451A;"></div>
-            Lisbon · Oct 2–6
-          </div>
-        </div>
-      </div>
-
-      <div class="prev-card reveal">
-        <div class="prev-card-body">
-          <div class="prev-title">Events</div>
+          <div class="prev-title" style="color:#2563EB;">Events</div>
           <div class="prev-desc">A one-off occasion with a date and location. See who else is going.</div>
         </div>
         <div class="prev-card-foot">
           <div class="prev-mini">
-            <div class="prev-dot" style="background:#061E42;"></div>
+            <div class="prev-dot" style="background:#2563EB;"></div>
             Glastonbury · Jun 25–29
           </div>
           <div class="prev-mini">
-            <div class="prev-dot" style="background:#061E42;"></div>
+            <div class="prev-dot" style="background:#2563EB;"></div>
             Reading Festival · Aug 22
           </div>
         </div>
       </div>
 
-      <div class="prev-card reveal">
+      <div class="prev-card reveal" style="border-top: 3px solid #2CB7A8;">
         <div class="prev-card-body">
-          <div class="prev-title">Happenings</div>
+          <div class="prev-title" style="color:#2CB7A8;">Happenings</div>
           <div class="prev-desc">Regular plans and recurring activities. Friends can join when they're around.</div>
         </div>
         <div class="prev-card-foot">
           <div class="prev-mini">
-            <div class="prev-dot" style="background:#1A8078;"></div>
+            <div class="prev-dot" style="background:#2CB7A8;"></div>
             Friday pub · Every week
           </div>
           <div class="prev-mini">
-            <div class="prev-dot" style="background:#1A8078;"></div>
+            <div class="prev-dot" style="background:#2CB7A8;"></div>
             Sunday run · Regent's Park
           </div>
         </div>
       </div>
 
-      <div class="prev-card reveal">
+      <div class="prev-card reveal" style="border-top: 3px solid #D97706;">
         <div class="prev-card-body">
-          <div class="prev-title">Floats</div>
+          <div class="prev-title" style="color:#D97706;">Trips</div>
+          <div class="prev-desc">Share where you'll be and when. Friends see if their world overlaps with yours.</div>
+        </div>
+        <div class="prev-card-foot">
+          <div class="prev-mini">
+            <div class="prev-dot" style="background:#D97706;"></div>
+            New York · Sep 10–14
+          </div>
+          <div class="prev-mini">
+            <div class="prev-dot" style="background:#D97706;"></div>
+            Lisbon · Oct 2–6
+          </div>
+        </div>
+      </div>
+
+      <div class="prev-card reveal" style="border-top: 3px solid #8B6CFF;">
+        <div class="prev-card-body">
+          <div class="prev-title" style="color:#8B6CFF;">Floats</div>
           <div class="prev-desc">Float an idea to your crew. See who's in before committing to anything.</div>
         </div>
         <div class="prev-card-foot">
           <div class="prev-mini">
-            <div class="prev-dot" style="background:#6B50CC;"></div>
+            <div class="prev-dot" style="background:#8B6CFF;"></div>
             Weekend in Amsterdam?
           </div>
           <div class="prev-mini">
-            <div class="prev-dot" style="background:#6B50CC;"></div>
+            <div class="prev-dot" style="background:#8B6CFF;"></div>
             Game of football Sunday?
           </div>
         </div>
@@ -980,9 +1273,47 @@
 </section>
 
 <!-- ════════════════════════════════════
+     7b. WHY IT MATTERS
+════════════════════════════════════ -->
+<section class="why-section" id="why">
+  <div class="inner">
+    <span class="section-label reveal">Why it matters</span>
+    <h2 class="why-h2 reveal">Social isolation among young people is not an anecdote. It is a documented and accelerating trend.</h2>
+
+    <div class="why-stats">
+      <div class="why-stat reveal">
+        <div class="why-stat-bar"></div>
+        <div class="why-stat-text">In Europe, the share of young people who don't socialise even once a week has risen from <strong>one in ten to one in four</strong>.</div>
+      </div>
+      <div class="why-stat reveal">
+        <div class="why-stat-bar"></div>
+        <div class="why-stat-text">People in their teens and twenties now hang out about as much as someone <strong>ten years older than them did in the past</strong>.</div>
+      </div>
+      <div class="why-stat reveal">
+        <div class="why-stat-bar"></div>
+        <div class="why-stat-text">Time-use data from the US and UK shows a <strong>marked increase in time spent alone</strong> among teens and young adults over the past decade, with little to no change among older groups.</div>
+      </div>
+      <div class="why-stat reveal">
+        <div class="why-stat-bar"></div>
+        <div class="why-stat-text">More time spent alone is strongly associated with <strong>lower life satisfaction</strong> — and this deterioration in young people's life satisfaction between 2010 and 2023 can be substantially explained by changes in how they spend their time.</div>
+      </div>
+      <div class="why-stat reveal">
+        <div class="why-stat-bar"></div>
+        <div class="why-stat-text">The most meaningful activities — socialising, shared experiences — are being replaced by solitary screen time, which young people themselves rate as <strong>the least meaningful</strong> of all activities.</div>
+      </div>
+    </div>
+
+    <div class="why-closing">
+      <p class="reveal">Every major social platform has accelerated this trend. They are optimised for engagement, not connection. For followers, not friends. For the past, not the future.</p>
+      <p class="reveal">Most social networks today are retrospective. You look back at things that happened and feel disconnected, guilty, like you missed out. Caila is the opposite — it's forward-looking, connecting people to moments before they pass rather than after.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════
      8. MASCOT CTA
 ════════════════════════════════════ -->
-<section class="mascot-cta">
+<section class="mascot-cta" id="join">
   <div class="mascot-cta-inner">
     <div class="mascot-cta-char reveal">
       <img src="mascot.png" alt="Caila mascot" />
@@ -999,7 +1330,7 @@
 <!-- ── Footer ── -->
 <footer>
   <span class="footer-logo">Caila</span>
-  <p class="footer-copy">© 2026 Caila Ltd · iOS</p>
+  <p class="footer-copy">© 2026 Caila Ltd · iOS · caila.social</p>
   <nav class="footer-nav">
     <a href="/privacy">Privacy Policy</a>
     <a href="/terms">Terms of Service</a>
@@ -1010,13 +1341,44 @@
 document.addEventListener('DOMContentLoaded', () => {
   const bar    = document.getElementById('progress-bar');
   const header = document.getElementById('site-header');
+  const dotNav = document.getElementById('section-dot-nav');
+  const dotLinks = Array.from(document.querySelectorAll('.section-dot-nav a'));
+  const dotSections = dotLinks
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
 
   // Scroll progress + header shadow
-  window.addEventListener('scroll', () => {
+  function updatePagePosition() {
     const max = document.documentElement.scrollHeight - window.innerHeight;
-    bar.style.width = (window.scrollY / max * 100) + '%';
+    bar.style.width = (max > 0 ? (window.scrollY / max * 100) : 0) + '%';
     header.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+
+    if (dotNav) {
+      const hero = document.getElementById('hero');
+      const showDots = window.innerWidth > 1180 && hero && window.scrollY > hero.offsetHeight * 0.58;
+      dotNav.classList.toggle('visible', Boolean(showDots));
+    }
+
+    if (dotSections.length) {
+      const anchor = window.scrollY + window.innerHeight * 0.42;
+      let activeId = dotSections[0].id;
+      dotSections.forEach(section => {
+        if (section.offsetTop <= anchor) activeId = section.id;
+      });
+      dotLinks.forEach(link => {
+        const isActive = link.getAttribute('href') === '#' + activeId;
+        link.classList.toggle('active', isActive);
+        if (isActive) {
+          link.setAttribute('aria-current', 'true');
+        } else {
+          link.removeAttribute('aria-current');
+        }
+      });
+    }
+  }
+  window.addEventListener('scroll', updatePagePosition, { passive: true });
+  window.addEventListener('resize', updatePagePosition);
+  updatePagePosition();
 
   // Stagger siblings in the same parent
   const groups = new Map();
@@ -1052,6 +1414,108 @@ document.addEventListener('DOMContentLoaded', () => {
       if (el) el.classList.add('visible');
     });
   }));
+});
+
+// Interactive overlap demo
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('demoTrack');
+  const youEl = document.getElementById('youRange');
+  const friendEl = document.getElementById('friendRange');
+  const overlapEl = document.getElementById('overlapHighlight');
+  const badgeEl = document.getElementById('overlapBadge');
+  const hintEl = document.getElementById('demoHint');
+  const youDateLabel = document.getElementById('youDateLabel');
+  if (!track || !youEl) return;
+
+  const RANGE_START = 5, RANGE_END = 25;
+  const UNITS = RANGE_END - RANGE_START;
+  const YOU_DUR = 4;
+  const FRIEND_START = 14, FRIEND_END = 17;
+
+  let youStart = 12;
+  let dragging = false;
+  let grabOffsetDays = 0;
+
+  const pct = day => ((day - RANGE_START) / UNITS) * 100;
+  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+
+  function layoutFriend() {
+    friendEl.style.left = pct(FRIEND_START) + '%';
+    friendEl.style.width = (pct(FRIEND_END + 1) - pct(FRIEND_START)) + '%';
+  }
+
+  function render() {
+    const youEnd = youStart + YOU_DUR - 1;
+    youEl.style.left = pct(youStart) + '%';
+    youEl.style.width = (pct(youEnd + 1) - pct(youStart)) + '%';
+    youEl.setAttribute('aria-valuenow', String(youStart));
+    if (youDateLabel) youDateLabel.textContent = youStart + '–' + youEnd + ' July';
+
+    const ovStart = Math.max(youStart, FRIEND_START);
+    const ovEnd = Math.min(youEnd, FRIEND_END);
+    const hasOverlap = ovStart <= ovEnd;
+
+    if (hasOverlap) {
+      overlapEl.style.left = pct(ovStart) + '%';
+      overlapEl.style.width = (pct(ovEnd + 1) - pct(ovStart)) + '%';
+      overlapEl.classList.add('show');
+      badgeEl.textContent = 'Overlap · Rome · ' + ovStart + '–' + ovEnd + ' July';
+      badgeEl.classList.remove('is-muted');
+      if (!badgeEl.dataset.hadOverlap) {
+        badgeEl.classList.add('pop');
+        setTimeout(() => badgeEl.classList.remove('pop'), 360);
+      }
+      badgeEl.dataset.hadOverlap = '1';
+    } else {
+      overlapEl.classList.remove('show');
+      badgeEl.textContent = 'Drag closer to Rome to find your overlap';
+      badgeEl.classList.add('is-muted');
+      badgeEl.dataset.hadOverlap = '';
+    }
+  }
+
+  function dayFromClientX(clientX) {
+    const rect = track.getBoundingClientRect();
+    const ratio = clamp((clientX - rect.left) / rect.width, 0, 1);
+    return RANGE_START + ratio * UNITS;
+  }
+
+  function onPointerDown(e) {
+    dragging = true;
+    youEl.classList.add('dragging');
+    hintEl.classList.add('hidden');
+    grabOffsetDays = dayFromClientX(e.clientX) - youStart;
+    if (youEl.setPointerCapture) youEl.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  }
+  function onPointerMove(e) {
+    if (!dragging) return;
+    const day = dayFromClientX(e.clientX) - grabOffsetDays;
+    const newStart = clamp(Math.round(day), RANGE_START, RANGE_END - YOU_DUR + 1);
+    if (newStart !== youStart) { youStart = newStart; render(); }
+  }
+  function onPointerUp() {
+    if (!dragging) return;
+    dragging = false;
+    youEl.classList.remove('dragging');
+  }
+
+  youEl.addEventListener('pointerdown', onPointerDown);
+  window.addEventListener('pointermove', onPointerMove);
+  window.addEventListener('pointerup', onPointerUp);
+
+  youEl.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+      youStart = clamp(youStart - 1, RANGE_START, RANGE_END - YOU_DUR + 1);
+      render(); hintEl.classList.add('hidden');
+    } else if (e.key === 'ArrowRight') {
+      youStart = clamp(youStart + 1, RANGE_START, RANGE_END - YOU_DUR + 1);
+      render(); hintEl.classList.add('hidden');
+    }
+  });
+
+  layoutFriend();
+  render();
 });
 </script>
 </body>
