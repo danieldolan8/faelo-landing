@@ -866,7 +866,121 @@
     .privacy-tagline {
       font-size: 17px; font-weight: 700; letter-spacing: -0.2px;
       color: rgba(255,255,255,0.85);
-      margin: 0 auto 44px;
+      margin: 0 auto 34px;
+    }
+    .privacy-demo {
+      max-width: 760px;
+      margin: 0 auto 34px;
+      padding: 22px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 24px;
+      background: rgba(255,255,255,0.045);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.22);
+      text-align: left;
+    }
+    .privacy-demo-title {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .privacy-options {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .privacy-option {
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.72);
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 9px 13px;
+      transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+    }
+    .privacy-option:hover,
+    .privacy-option:focus-visible {
+      border-color: rgba(255,122,69,0.48);
+      color: #fff;
+      outline: none;
+      transform: translateY(-1px);
+    }
+    .privacy-option.active {
+      background: rgba(255,122,69,0.16);
+      border-color: rgba(255,122,69,0.58);
+      color: #fff;
+    }
+    .privacy-plan-preview {
+      max-width: 420px;
+      margin: 0 auto;
+      border: 1px solid rgba(216,208,240,0.24);
+      border-radius: 18px;
+      background: rgba(255,252,250,0.94);
+      box-shadow: 0 18px 48px rgba(0,0,0,0.18);
+      padding: 16px;
+    }
+    .privacy-preview-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+    }
+    .privacy-preview-type {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .privacy-preview-lock {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(139,108,255,0.13);
+      color: var(--purple);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 900;
+    }
+    .privacy-preview-title {
+      color: var(--dark);
+      font-size: 17px;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+      margin-bottom: 4px;
+    }
+    .privacy-preview-meta {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 650;
+      margin-bottom: 12px;
+    }
+    .privacy-preview-audience {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      border-radius: 999px;
+      background: rgba(139,108,255,0.10);
+      color: var(--dark);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px 11px;
+    }
+    .privacy-preview-audience::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--purple);
     }
     .privacy-pills {
       display: flex; flex-wrap: wrap;
@@ -1534,10 +1648,28 @@
     <h2 class="privacy-h2 reveal">Private by design.<br/>Social by intention.</h2>
     <p class="privacy-sub reveal">You control what you add, who can see it, and how visible each plan should be.</p>
     <p class="privacy-tagline reveal">No algorithm. No strangers. No noise.</p>
+    <div class="privacy-demo reveal">
+      <div class="privacy-demo-title">Who can see this plan?</div>
+      <div class="privacy-options" role="group" aria-label="Plan visibility selector">
+        <button class="privacy-option active" type="button" data-audience="All friends" data-detail="Visible to your accepted friends.">All friends</button>
+        <button class="privacy-option" type="button" data-audience="Close friends" data-detail="Visible to your close friends list.">Close friends</button>
+        <button class="privacy-option" type="button" data-audience="Specific crew" data-detail="Visible to London Crew only.">Specific crew</button>
+        <button class="privacy-option" type="button" data-audience="Only me" data-detail="Private draft. Only you can see it.">Only me</button>
+      </div>
+      <div class="privacy-plan-preview" aria-live="polite">
+        <div class="privacy-preview-top">
+          <div class="privacy-preview-type">Trip</div>
+          <div class="privacy-preview-lock">•</div>
+        </div>
+        <div class="privacy-preview-title">Dublin weekend</div>
+        <div class="privacy-preview-meta">12-14 Jul · Smithfield</div>
+        <div class="privacy-preview-audience" id="privacyAudience">All friends · Visible to your accepted friends.</div>
+      </div>
+    </div>
     <div class="privacy-pills">
       <div class="privacy-pill reveal"><div class="privacy-pip"></div> No strangers</div>
-      <div class="privacy-pill reveal"><div class="privacy-pip"></div> No algorithmic noise</div>
-      <div class="privacy-pill reveal"><div class="privacy-pip"></div> Plans shared with people you choose</div>
+      <div class="privacy-pill reveal"><div class="privacy-pip"></div> No algorithmic feed</div>
+      <div class="privacy-pill reveal"><div class="privacy-pip"></div> You choose who sees each plan</div>
     </div>
   </div>
 </section>
@@ -1770,6 +1902,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (el) el.classList.add('visible');
     });
   }));
+
+  const privacyOptions = Array.from(document.querySelectorAll('.privacy-option'));
+  const privacyAudience = document.getElementById('privacyAudience');
+  privacyOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      privacyOptions.forEach(item => item.classList.remove('active'));
+      option.classList.add('active');
+      if (privacyAudience) {
+        privacyAudience.textContent = option.dataset.audience + ' · ' + option.dataset.detail;
+      }
+    });
+  });
 });
 
 // Interactive overlap demo
