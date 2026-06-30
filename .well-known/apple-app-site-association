@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["28Q4SZ94YV.com.faelo.app"],
+        "components": [
+          {
+            "/": "/post/*",
+            "comment": "Happening / event / trip invite links"
+          }
+        ]
+      }
+    ]
+  }
+}

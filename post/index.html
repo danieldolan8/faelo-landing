@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're invited — Caila</title>
+  <meta name="description" content="You've been invited to a happening on Caila. Download the app to see the details and join." />
+  <meta property="og:title" content="You're invited on Caila" />
+  <meta property="og:description" content="Someone shared a happening with you. Download Caila to see the details and join." />
+  <meta property="og:image" content="https://caila.social/real-plans.png" />
+  <meta property="og:type" content="website" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #F8F3EF;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    img.logo { width: 72px; height: 72px; border-radius: 18px; margin-bottom: 20px; }
+    h1 { font-size: 26px; font-weight: 700; color: #0F1F3D; margin-bottom: 10px; letter-spacing: -0.5px; }
+    p { font-size: 16px; color: #6B7280; line-height: 1.5; max-width: 320px; margin-bottom: 32px; }
+    a.cta {
+      display: inline-block;
+      background: #0F1F3D;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 14px;
+      text-decoration: none;
+      letter-spacing: -0.2px;
+    }
+    a.cta:hover { opacity: 0.88; }
+    .sub { margin-top: 16px; font-size: 13px; color: #9CA3AF; }
+  </style>
+</head>
+<body>
+  <img class="logo" src="https://caila.social/caila-logo-mark.png" alt="Caila" />
+  <h1>You're invited</h1>
+  <p>Someone shared a happening with you on Caila — the app that shows you when your friends' plans overlap with yours.</p>
+  <a class="cta" id="store-link" href="https://apps.apple.com/gb/app/id6744034075">Get Caila on the App Store</a>
+  <p class="sub">Free to download · iOS</p>
+
+  <script>
+    // Extract the post ID from the URL path: /post/<postId>
+    var parts = window.location.pathname.split('/').filter(Boolean);
+    var postId = parts.length >= 2 ? parts[1] : null;
+
+    if (postId) {
+      // Try to open the app directly via custom scheme (works if app is installed).
+      // If app is not installed, iOS will do nothing — the page stays visible.
+      window.location.href = 'caila://post/' + postId;
+
+      // After a short delay, redirect to the App Store so new users can download.
+      // If the app opened successfully, the user left the page, so this never fires.
+      setTimeout(function () {
+        document.getElementById('store-link').href =
+          'https://apps.apple.com/gb/app/id6744034075';
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
