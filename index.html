@@ -455,12 +455,71 @@
 
     /* Story section */
     .story-section { padding: 120px 0; background: var(--dark); }
-    .story-section .inner { max-width: 720px; }
+    .story-section .inner { max-width: 940px; }
     .story-section .section-label { color: var(--orange); }
-    .story-h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; color: #fff; line-height: 1.15; margin: 12px 0 48px; }
-    .story-body p { font-size: 1.1rem; line-height: 1.75; color: rgba(255,255,255,0.72); margin-bottom: 24px; }
-    .story-body p:last-child { margin-bottom: 0; }
-    .story-punchline { font-size: 1.2rem !important; font-weight: 700; color: #fff !important; }
+    .story-h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; color: #fff; line-height: 1.15; margin: 12px 0 36px; }
+    .story-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 16px; margin-bottom: 34px;
+    }
+    .story-card {
+      min-height: 168px;
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.045);
+      padding: 24px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+    }
+    .story-card-title {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin-bottom: 12px;
+    }
+    .story-card-body {
+      color: rgba(255,255,255,0.70);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .story-punchline {
+      font-size: clamp(1.3rem, 2vw, 1.7rem);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.6px;
+      margin-bottom: 22px;
+    }
+    .story-details {
+      max-width: 720px;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 20px;
+    }
+    .story-details summary {
+      display: inline-flex;
+      cursor: pointer;
+      color: rgba(255,255,255,0.82);
+      font-size: 14px;
+      font-weight: 700;
+      list-style: none;
+    }
+    .story-details summary::-webkit-details-marker { display: none; }
+    .story-details summary::after {
+      content: '+';
+      margin-left: 8px;
+      color: var(--orange);
+    }
+    .story-details[open] summary::after { content: '-'; }
+    .story-full {
+      margin-top: 18px;
+      color: rgba(255,255,255,0.68);
+      font-size: 15px;
+      line-height: 1.75;
+    }
+    .story-full p + p { margin-top: 14px; }
+    @media (max-width: 860px) {
+      .story-cards { grid-template-columns: 1fr; }
+      .story-card { min-height: 0; }
+    }
     .overlap-grid {
       display: grid; grid-template-columns: 1fr 1fr;
       gap: 80px; align-items: center;
@@ -1198,12 +1257,29 @@
   <div class="inner">
     <span class="section-label reveal">A personal story</span>
     <h2 class="story-h2 reveal">A story of luck.</h2>
-    <div class="story-body">
-      <p class="reveal">I'm Italian. I live in Brussels. Last year I was in Berlin — a close friend happened to be flying in the same day. We only found out because of a Strava notification. We spent the whole day together.</p>
-      <p class="reveal">A month later, a friend ran the London Marathon while I was there. She didn't know I was. We found out that evening on Instagram.</p>
-      <p class="reveal">Same story. Different feeling. One was a great day. One was a missed one.</p>
-      <p class="story-punchline reveal">The only difference was luck. Caila removes the luck.</p>
+    <div class="story-cards">
+      <div class="story-card reveal">
+        <div class="story-card-title">Berlin</div>
+        <p class="story-card-body">A friend happened to be flying in the same day. We only found out by chance.</p>
+      </div>
+      <div class="story-card reveal">
+        <div class="story-card-title">London Marathon</div>
+        <p class="story-card-body">A friend was running while I was nearby. We found out too late.</p>
+      </div>
+      <div class="story-card reveal">
+        <div class="story-card-title">Caila</div>
+        <p class="story-card-body">The same moments shouldn't depend on luck.</p>
+      </div>
     </div>
+    <p class="story-punchline reveal">Caila removes the luck.</p>
+    <details class="story-details reveal">
+      <summary>Read the story</summary>
+      <div class="story-full">
+        <p>I'm Italian. I live in Brussels. Last year I was in Berlin, and a close friend happened to be flying in the same day. We only found out because of a Strava notification. We spent the whole day together.</p>
+        <p>A month later, a friend ran the London Marathon while I was there. She didn't know I was nearby. We only found out that evening on Instagram.</p>
+        <p>Same story. Different feeling. One was a great day. One was a missed one.</p>
+      </div>
+    </details>
   </div>
 </section>
 
