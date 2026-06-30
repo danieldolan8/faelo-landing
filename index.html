@@ -1118,17 +1118,59 @@
 
     /* ── Why It Matters ── */
     .why-section { padding: 120px 0; background: var(--bg); }
-    .why-section .inner { max-width: 780px; }
-    .why-h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800; color: var(--dark); line-height: 1.2; margin: 12px 0 48px; }
-    .why-intro { font-size: 1.05rem; line-height: 1.75; color: var(--muted); margin-bottom: 48px; }
-    .why-stats { display: flex; flex-direction: column; gap: 0; margin-bottom: 48px; border-top: 1px solid var(--border-w); }
-    .why-stat { display: flex; gap: 24px; align-items: flex-start; padding: 28px 0; border-bottom: 1px solid var(--border-w); }
-    .why-stat-bar { flex-shrink: 0; width: 3px; border-radius: 2px; background: var(--orange); align-self: stretch; min-height: 20px; }
-    .why-stat-text { font-size: 1rem; line-height: 1.65; color: var(--muted); }
-    .why-stat-text strong { color: var(--dark); font-weight: 700; }
-    .why-closing { display: flex; flex-direction: column; gap: 20px; }
-    .why-closing p { font-size: 1.05rem; line-height: 1.75; color: var(--muted); }
-    .why-closing p:last-child { color: var(--dark); font-weight: 600; font-size: 1.1rem; }
+    .why-section .inner { max-width: 960px; }
+    .why-h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--dark); line-height: 1.12; letter-spacing: -1.6px; margin: 12px 0 42px; }
+    .why-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 18px; margin-bottom: 34px;
+    }
+    .why-stat {
+      border: 1px solid var(--border-w);
+      border-radius: 18px;
+      background: var(--surface);
+      padding: 24px;
+      box-shadow: 0 14px 42px rgba(6,30,66,0.06);
+    }
+    .why-stat-kicker {
+      color: var(--orange);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .why-stat-title {
+      color: var(--dark);
+      font-size: 20px;
+      font-weight: 850;
+      line-height: 1.18;
+      letter-spacing: -0.6px;
+      margin-bottom: 10px;
+    }
+    .why-stat-text { font-size: 14px; line-height: 1.6; color: var(--muted); }
+    .why-closing {
+      max-width: 720px;
+      border-top: 1px solid var(--border-w);
+      padding-top: 24px;
+    }
+    .why-closing p { font-size: 1.1rem; line-height: 1.65; color: var(--dark); font-weight: 750; letter-spacing: -0.25px; }
+    .why-sources {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .why-sources a {
+      color: var(--muted);
+      border-bottom: 1px solid rgba(116,109,124,0.35);
+    }
+    .why-sources a:hover { color: var(--dark); }
+    @media (max-width: 860px) {
+      .why-stats { grid-template-columns: 1fr; }
+    }
 
     /* ── Mascot CTA ── */
     .mascot-cta {
@@ -1764,34 +1806,33 @@
 <section class="why-section" id="why">
   <div class="inner">
     <span class="section-label reveal">Why it matters</span>
-    <h2 class="why-h2 reveal">Social isolation among young people is not an anecdote. It is a documented and accelerating trend.</h2>
+    <h2 class="why-h2 reveal">People are spending more time alone.</h2>
 
     <div class="why-stats">
       <div class="why-stat reveal">
-        <div class="why-stat-bar"></div>
-        <div class="why-stat-text">In Europe, the share of young people who don't socialise even once a week has risen from <strong>one in ten to one in four</strong>.</div>
+        <div class="why-stat-kicker">Socialising</div>
+        <div class="why-stat-title">Young people are socialising less often than before.</div>
+        <div class="why-stat-text">Real-life time with friends is becoming harder to coordinate and easier to miss.</div>
       </div>
       <div class="why-stat reveal">
-        <div class="why-stat-bar"></div>
-        <div class="why-stat-text">People in their teens and twenties now hang out about as much as someone <strong>ten years older than them did in the past</strong>.</div>
+        <div class="why-stat-kicker">Social apps</div>
+        <div class="why-stat-title">Social apps are built around the past.</div>
+        <div class="why-stat-text">Most platforms show what already happened, after the chance to join has gone.</div>
       </div>
       <div class="why-stat reveal">
-        <div class="why-stat-bar"></div>
-        <div class="why-stat-text">Time-use data from the US and UK shows a <strong>marked increase in time spent alone</strong> among teens and young adults over the past decade, with little to no change among older groups.</div>
-      </div>
-      <div class="why-stat reveal">
-        <div class="why-stat-bar"></div>
-        <div class="why-stat-text">More time spent alone is strongly associated with <strong>lower life satisfaction</strong> — and this deterioration in young people's life satisfaction between 2010 and 2023 can be substantially explained by changes in how they spend their time.</div>
-      </div>
-      <div class="why-stat reveal">
-        <div class="why-stat-bar"></div>
-        <div class="why-stat-text">The most meaningful activities — socialising, shared experiences — are being replaced by solitary screen time, which young people themselves rate as <strong>the least meaningful</strong> of all activities.</div>
+        <div class="why-stat-kicker">Caila</div>
+        <div class="why-stat-title">Caila is built around what's next.</div>
+        <div class="why-stat-text">Plans, overlaps and real-life moments before they pass.</div>
       </div>
     </div>
 
     <div class="why-closing">
-      <p class="reveal">Every major social platform has accelerated this trend. They are optimised for engagement, not connection. For followers, not friends. For the past, not the future.</p>
-      <p class="reveal">Most social networks today are retrospective. You look back at things that happened and feel disconnected, guilty, like you missed out. Caila is the opposite — it's forward-looking, connecting people to moments before they pass rather than after.</p>
+      <p class="reveal">Caila is forward-looking: built for the plans ahead, not the posts after.</p>
+      <div class="why-sources reveal">
+        <span>Sources:</span>
+        <a href="https://ourworldindata.org/social-connections-and-loneliness" target="_blank" rel="noopener">Our World in Data</a>
+        <a href="https://www.hhs.gov/sites/default/files/surgeon-general-social-connection-advisory.pdf" target="_blank" rel="noopener">US Surgeon General</a>
+      </div>
     </div>
   </div>
 </section>
