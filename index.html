@@ -3,14 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Caila — Plans still ahead of you</title>
-  <meta name="description" content="Caila helps real friends share upcoming trips, events, and plans — so they can discover when their lives overlap before the moment passes." />
+  <title>Caila — Social planning app for close friends</title>
+  <meta name="description" content="See your friends' upcoming trips, events and plans before they happen. Caila shows when your social lives overlap — so you never miss a moment with the people who matter." />
   <link rel="canonical" href="https://caila.social/" />
   <meta name="robots" content="index, follow" />
-  <meta property="og:title" content="Caila — Plans still ahead of you" />
-  <meta property="og:description" content="A private social app for the plans still ahead of you." />
+  <meta property="og:title" content="Caila — Social planning app for close friends" />
+  <meta property="og:description" content="See your friends' upcoming trips, events and plans before they happen. Caila shows when your social lives overlap — so you never miss a moment." />
   <meta property="og:url" content="https://caila.social/" />
   <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://caila.social/real-plans.png" />
+  <meta property="og:image:alt" content="Friends enjoying time together outdoors — Caila helps you find moments like these before they pass." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Caila — Social planning app for close friends" />
+  <meta name="twitter:description" content="See your friends' upcoming trips, events and plans before they happen. Caila shows when your social lives overlap." />
+  <meta name="twitter:image" content="https://caila.social/real-plans.png" />
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -462,12 +468,17 @@
       -webkit-backdrop-filter: blur(14px);
     }
     .banner-card--plan {
-      left: max(32px, 9vw);
+      left: 35%;
+      transform: translateX(-50%);
       bottom: 34px;
+      min-width: 0;
+      width: 180px;
     }
     .banner-card--overlap {
-      right: max(28px, 8vw);
+      right: 16px;
       top: 32px;
+      min-width: 0;
+      width: 190px;
     }
     .banner-card-label {
       display: inline-flex;
@@ -514,11 +525,12 @@
         padding: 12px 14px;
       }
       .banner-card--plan {
-        left: 24px;
+        left: 50%;
+        transform: translateX(-50%);
         bottom: 18px;
       }
       .banner-card--overlap {
-        right: 24px;
+        right: 12px;
         top: 18px;
       }
       .banner-card-title { font-size: 14px; }
@@ -536,7 +548,7 @@
     .story-section .section-label { color: var(--orange); }
     .story-h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; color: #fff; line-height: 1.15; margin: 12px 0 36px; }
     .story-cards {
-      display: grid; grid-template-columns: repeat(3, 1fr);
+      display: grid; grid-template-columns: repeat(2, 1fr);
       gap: 16px; margin-bottom: 34px;
     }
     .story-card {
@@ -559,33 +571,35 @@
       font-size: 14px;
       line-height: 1.65;
     }
+    .story-details {
+      max-width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-top: 20px;
+    }
+    .story-details summary {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+      cursor: pointer;
+      list-style: none;
+    }
+    .story-details summary::-webkit-details-marker { display: none; }
     .story-punchline {
       font-size: clamp(1.3rem, 2vw, 1.7rem);
       font-weight: 800;
       color: #fff;
       letter-spacing: -0.6px;
-      margin-bottom: 22px;
     }
-    .story-details {
-      max-width: 720px;
-      border-top: 1px solid rgba(255,255,255,0.10);
-      padding-top: 20px;
-    }
-    .story-details summary {
-      display: inline-flex;
-      cursor: pointer;
-      color: rgba(255,255,255,0.82);
-      font-size: 14px;
+    .story-read-link {
+      flex-shrink: 0;
+      color: rgba(255,255,255,0.70);
+      font-size: 13px;
       font-weight: 700;
-      list-style: none;
+      white-space: nowrap;
     }
-    .story-details summary::-webkit-details-marker { display: none; }
-    .story-details summary::after {
-      content: '+';
-      margin-left: 8px;
-      color: var(--orange);
-    }
-    .story-details[open] summary::after { content: '-'; }
+    .story-read-link::after { content: ' +'; color: var(--orange); }
+    .story-details[open] .story-read-link::after { content: ' −'; }
     .story-full {
       margin-top: 18px;
       color: rgba(255,255,255,0.68);
@@ -741,17 +755,20 @@
     .mini-privacy-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      row-gap: 7px;
+      column-gap: 7px;
     }
     .mini-privacy-chip {
+      display: inline-flex; align-items: center; gap: 4px;
       border: 1px solid rgba(216,208,240,0.90);
       border-radius: 999px;
       background: #fff;
       color: rgba(6,30,66,0.68);
-      font-size: 12px;
+      font-size: 10px;
       font-weight: 800;
-      padding: 8px 11px;
+      padding: 5px 8px;
     }
+    .mini-privacy-chip svg { flex-shrink: 0; }
     .mini-privacy-chip.active {
       background: rgba(139,108,255,0.12);
       border-color: rgba(139,108,255,0.34);
@@ -1387,10 +1404,10 @@
   </a>
   <nav>
     <ul class="header-nav">
-      <li><a href="#problem">Features</a></li>
+      <li><a href="#problem">What it does</a></li>
       <li><a href="#how-it-works">How it works</a></li>
       <li><a href="#privacy">Privacy</a></li>
-      <li><a href="/about">About</a></li>
+      <li><a href="#why">Why</a></li>
     </ul>
   </nav>
   <a href="https://apps.apple.com/gb/app/id6744034075" class="header-cta">iOS App ↗</a>
@@ -1407,7 +1424,7 @@
         Connecting people to moments<br /><em>before</em> they happen, not after.
       </h1>
       <p class="hero-sub reveal">
-        Share what you're doing next with close friends. Caila shows when your plans, trips and events overlap - before they happen.
+        Share what you're doing next with close friends.
       </p>
       <div class="hero-actions reveal">
         <a href="https://apps.apple.com/gb/app/id6744034075" class="btn-orange-pulse">Join Caila</a>
@@ -1591,14 +1608,9 @@
         <div class="story-card-title">London Marathon</div>
         <p class="story-card-body">A friend was running while I was nearby. We found out too late.</p>
       </div>
-      <div class="story-card reveal">
-        <div class="story-card-title">Caila</div>
-        <p class="story-card-body">The same moments shouldn't depend on luck.</p>
-      </div>
     </div>
-    <p class="story-punchline reveal">Caila removes the luck.</p>
     <details class="story-details reveal">
-      <summary>Read the story</summary>
+      <summary><span class="story-punchline">Caila removes the luck.</span><span class="story-read-link">Read the story</span></summary>
       <div class="story-full">
         <p>I'm Italian. I live in Brussels. Last year I was in Berlin, and a close friend happened to be flying in the same day. We only found out because of a Strava notification. We spent the whole day together.</p>
         <p>A month later, a friend ran the London Marathon while I was there. She didn't know I was nearby. We only found out that evening on Instagram.</p>
@@ -1650,9 +1662,11 @@
       <div class="hiw-card reveal">
         <div class="hiw-mini" aria-hidden="true">
           <div class="mini-privacy-row">
-            <div class="mini-privacy-chip active">Friends</div>
-            <div class="mini-privacy-chip">Crew</div>
-            <div class="mini-privacy-chip">Only me</div>
+            <div class="mini-privacy-chip active"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>Friends</div>
+            <div class="mini-privacy-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Close</div>
+            <div class="mini-privacy-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M3 21c0-3.5 3-6 6-6"/><circle cx="17" cy="8" r="3"/><path d="M21 21c0-3.5-3-6-6-6"/></svg>Crews</div>
+            <div class="mini-privacy-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>Tagged</div>
+            <div class="mini-privacy-chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Only me</div>
           </div>
         </div>
         <div class="hiw-num">2</div>
@@ -1686,24 +1700,6 @@
     <h2 class="privacy-h2 reveal">Private by design.<br/>Social by intention.</h2>
     <p class="privacy-sub reveal">You control what you add, who can see it, and how visible each plan should be.</p>
     <p class="privacy-tagline reveal">No algorithm. No strangers. No noise.</p>
-    <div class="privacy-demo reveal">
-      <div class="privacy-demo-title">Who can see this plan?</div>
-      <div class="privacy-options" role="group" aria-label="Plan visibility selector">
-        <button class="privacy-option active" type="button" data-audience="All friends" data-detail="Visible to your accepted friends.">All friends</button>
-        <button class="privacy-option" type="button" data-audience="Close friends" data-detail="Visible to your close friends list.">Close friends</button>
-        <button class="privacy-option" type="button" data-audience="Specific crew" data-detail="Visible to London Crew only.">Specific crew</button>
-        <button class="privacy-option" type="button" data-audience="Only me" data-detail="Private draft. Only you can see it.">Only me</button>
-      </div>
-      <div class="privacy-plan-preview" aria-live="polite">
-        <div class="privacy-preview-top">
-          <div class="privacy-preview-type">Trip</div>
-          <div class="privacy-preview-lock">•</div>
-        </div>
-        <div class="privacy-preview-title">Dublin weekend</div>
-        <div class="privacy-preview-meta">12-14 Jul · Smithfield</div>
-        <div class="privacy-preview-audience" id="privacyAudience">All friends · Visible to your accepted friends.</div>
-      </div>
-    </div>
     <div class="privacy-pills">
       <div class="privacy-pill reveal"><div class="privacy-pip"></div> No strangers</div>
       <div class="privacy-pill reveal"><div class="privacy-pip"></div> No algorithmic feed</div>
